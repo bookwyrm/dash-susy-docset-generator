@@ -86,9 +86,11 @@ namespace :docs do
     end
 
     rm DB if File.exists?(DB)
+    puts 'Creating SQLite Index'
     sql "CREATE TABLE searchIndex(id INTEGER PRIMARY KEY, name TEXT, type TEXT, path TEXT);",
       "CREATE UNIQUE INDEX anchor ON searchIndex (name, type, path);"
 
+    puts 'Populating SQLite Index'
     %w(Settings Shorthand Toolkit).each do |modname|
       file = "#{modname.downcase}.html"
       index modname, "Guide", file
@@ -99,6 +101,13 @@ namespace :docs do
         parse_section section, file
       end
     end
+
+    puts 'Done with SQLite Index'
+  end
+
+  task :done do
+    puts 'Docset built!'
+    puts "run: open #{DOCSET}"
   end
 
   task :clean do
@@ -107,7 +116,8 @@ namespace :docs do
   end
 
   desc 'generate a .docset for Susy'
-  task :generate => [:clean, :unpack, :build_html, :prep_docset]
+  task :generate => [:clean, :unpack, :build_html, :prep_docset, :index, :done]
 end
 
 task :default => "docs:generate"
+task :clean => "docs:clean"
