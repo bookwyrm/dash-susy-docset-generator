@@ -14,6 +14,11 @@ $ rake
 $ open Susy.docset
 ```
 
+## Todo
+
+* Remove online dependencies (Modernizer and Google Fonts)
+* Remove search JS from Docset
+
 ### Thanks
 
 This build process was based on the [Rakefile](https://github.com/indirect/dash-casperjs/blob/master/Rakefile) from [dash-casperjs](https://github.com/indirect/dash-casperjs).
