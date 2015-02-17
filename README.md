@@ -18,6 +18,7 @@ $ open Susy.docset
 
 * Remove online dependencies (Modernizer and Google Fonts)
 * Remove search JS from Docset
+* Add [Table of Contents Support](http://kapeli.com/docsets#tableofcontents)
 
 ## Other
 
